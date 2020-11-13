@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -21,7 +22,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//ativa proteção contra usuario que nbao estão validados por TOKEN
+		//ativa proteção contra usuario que nao estão validados por TOKEN
 		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 		
 		//Ativação a restrição por url
@@ -31,11 +32,14 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 		.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")
 		
 		/*URL DE LOGOUT E INVALIDA O USUÁRIO*/
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		
-		//filtra arequiusições de login para autenticação
+		//filtra a requisições de login para autenticação
+		.and().addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), 
+				UsernamePasswordAuthenticationFilter.class)
 		
 		//filtra demais requisições para verificar a presença do token jwt no header http
+		.addFilterBefore(new JWTApiAutenticacaoFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	

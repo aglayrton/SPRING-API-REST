@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -25,6 +26,7 @@ public class SpringrestapiApplication implements WebMvcConfigurer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringrestapiApplication.class, args);
+		System.out.println(new BCryptPasswordEncoder().encode("123"));
 	}
 	
 	/*reflete em todo sistema*/
@@ -33,8 +35,8 @@ public class SpringrestapiApplication implements WebMvcConfigurer{
 		registry.addMapping("/**"); //libera acesso a todos endpoints
 		
 		registry.addMapping("/usuario/**")
-		.allowedMethods("POST", "PUT", "DELETE") //Libera o mapeamento e as ações
-		.allowedOrigins("cliente40.com.br", "cliente4.com.br"); //libera as requições somente para estes
+		.allowedMethods("*")///Libera o mapeamento e as ações
+		.allowedOrigins("*"); //libera as requições somente para estes
 	}
 
 }

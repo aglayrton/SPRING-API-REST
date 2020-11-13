@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import spring.api.rest.entitys.Usuarios;
 import spring.api.rest.repositorys.UsuariosRepository;
 
-@CrossOrigin(origins = "site.com.br") //somente esse domínio  tem acesso a API, para todos é *
+//somente esse domínio  tem acesso a API, para todos é * @CrossOrigin(origins = "*") 
 @RestController /*Arquitetura REST*/
 @RequestMapping(value = "/usuario")
 public class IndexController {

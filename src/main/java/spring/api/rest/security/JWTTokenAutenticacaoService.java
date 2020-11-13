@@ -38,7 +38,8 @@ public class JWTTokenAutenticacaoService {
 	
 	
 	//==================================MÉTODOS================================
-	//Gerando token de autenticado e adicionando ao cabeçalho e resposta Http
+	
+	//Gerando token autenticado e adicionando ao cabeçalho e resposta Http
 	public void addAuthentication(HttpServletResponse response, String username) throws IOException{
 		
 		//montagem do token
