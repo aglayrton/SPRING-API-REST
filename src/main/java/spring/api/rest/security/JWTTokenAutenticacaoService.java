@@ -25,7 +25,7 @@ public class JWTTokenAutenticacaoService {
 	private UsuariosRepository usuarioRepository;
 	
 	//tempo de validação token por 2 dias
-	private static final long EXPIRATION_TIME = 172800000;
+	private static final long EXPIRATION_TIME = 1728000000;
 	
 	//Uma senha unica para compor a autenticacao
 	private static final String SECRET = "SenhaSecreta";

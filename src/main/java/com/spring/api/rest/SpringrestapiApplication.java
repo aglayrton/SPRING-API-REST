@@ -1,5 +1,7 @@
 package com.spring.api.rest;
 
+
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,7 +38,7 @@ public class SpringrestapiApplication implements WebMvcConfigurer{
 		
 		registry.addMapping("/usuario/**")
 		.allowedMethods("*")///Libera o mapeamento e as ações
-		.allowedOrigins("*"); //libera as requições somente para estes
+		.allowedOrigins("*"); //libera as requições somente para estes*/
 	}
 
 }

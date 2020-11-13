@@ -33,7 +33,7 @@ public class IndexController {
 		return ResponseEntity.ok(usuarios);
 	}
 	
-	@CrossOrigin(origins = "java.com.br, cliente1.com.br, localhost:8080") //permissão de acesso a api nas endpoint(método)
+	//@CrossOrigin(origins = "java.com.br, cliente1.com.br, localhost:8080") //permissão de acesso a api nas endpoint(método)
 	@GetMapping("/{id}")
 	public ResponseEntity<?> listarPorId(@PathVariable("id") Long id){
 		Usuarios usuarios = repository.findById(id).get();
